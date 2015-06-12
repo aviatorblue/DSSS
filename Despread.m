@@ -1,4 +1,4 @@
-function Despread(t,mod_sig,prbn,encode,bitres)
+function info_sig = Despread(t,mod_sig,prbn,encode,bitres)
 % Receive Data
 
 output = mod_sig.*prbn;

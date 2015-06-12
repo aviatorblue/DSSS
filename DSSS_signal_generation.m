@@ -12,7 +12,7 @@ for x = 1:length(string)
     data = [data,bit];
 end
 
-%data = ['0','1','0','1','0','1'];
+%data = ['0','0','0','1','0','1','0','0','0','1','0','1','0','0','0','1','0','1'];
 % Encode the signal for voting
 bitres = 11;
 encode = [];
@@ -50,7 +50,7 @@ end
 
 % Time plotting
 
-fs = 6000; % ~2 GHz
+fs = 8000; % ~2 GHz
 factor = 1;
 tend = len/fs;
 tscale = tend*factor;

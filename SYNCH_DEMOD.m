@@ -46,7 +46,7 @@ xlim([fn fp]);
 % provides an error based on that comparision.
 
 %sampled_signal = window.*mt;
-filter = fir1(filt_order,550*2/fs,'high');
+filter = fir1(filt_order,fn*2/fs,'high');
 output = filtfilt(filter,1,new_sig);
 atten = max(output);
 orig = max(sampled_signal);
