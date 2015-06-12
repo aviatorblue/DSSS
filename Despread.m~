@@ -1,10 +1,7 @@
 function info_sig = Despread(t,mod_sig,prbn,encode,bitres,bool)
 % Receive Data
-    if bool == true
-        output = mod_sig.*prbn;
-    elseif bool == false
-        output = mod_sig;
-    end
+
+output = mod_sig.*prbn;
 
 [info_sig origin reconsig] = decode(output,encode,bitres);
 len = length(info_sig);

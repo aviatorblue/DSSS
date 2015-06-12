@@ -1,4 +1,5 @@
 close all;
+
 % Modulate the signal
 fc = 500; % 1 MHz
 [tc Tp] = create_signal(fc,fs,len);
@@ -37,6 +38,10 @@ for m = 1:5
     xlabel('Frequency (Hz)');
     ylabel('|X(f)|');
     title('AWGN-DSS FFT');
+    display(sprintf(['AWGN_DSS with Noise at ', num2str(m)]));
+    output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,1400,50,2000,filt_order);
+    info_sig = Despread(t,dsblc_mod_sig,prbn,encode,bitres);
+
     
     AWGN_DSBLC(m,:) = (m)*white_noise + dsblc_mod_sig;
     [MAGA f] = ComputeSpectrum(AWGN_DSBLC(m,:),fs,2^16);
@@ -51,4 +56,13 @@ for m = 1:5
     xlabel('Frequency (Hz)');
     ylabel('|X(f)|');
     title('AWGN-DSB-LC FFT');
+    display(sprintf(['AWGN_DSS with Noise at ', num2str(m)]));
+    output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,1400,50,2000,filt_order);
+    info_sig = Despread(t,dsblc_mod_sig,prbn,encode,bitres);
+
 end
+
+
+
+% Receive the signal and analyze it for errors
+

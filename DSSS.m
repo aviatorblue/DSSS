@@ -33,35 +33,37 @@ subplot(2,1,2);
 plot(f,X,'b');
 title('Bandlimited Signal');
  
-% Modulate the signal
-fc = 3000; % 1 MHz
-[tc Tp] = create_signal(fc,fs,len);
-A = abs(max(encode));
-carrier = cos(2*pi*tc/Tp);
-carrier = carrier(1:length(encode));
-
-A = abs(max(encode));
-dsblc_mod_sig = (mod_sig + A).*carrier;
-
-[X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
-
-figure('Color',[1 1 1]);
-subplot(2,1,1);
-plot(t,dsblc_mod_sig);
-title('DSB-LC Modulate Signal');
-subplot(2,1,2);
-plot(f,X);
-title('DSB-LC Modulate Signal FFT');
-
-output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,1400,50,2000,filt_order);
+% % Modulate the signal
+% fc = 2000; % 1 MHz
+% [tc Tp] = create_signal(fc,fs,len);
+% A = abs(max(encode));
+% carrier = cos(2*pi*tc/Tp);
+% carrier = carrier(1:length(encode));
+% 
+% A = abs(max(encode));
+% dsblc_mod_sig = (mod_sig + A).*carrier;
+% 
+% [X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
+% 
+% figure('Color',[1 1 1]);
+% subplot(2,1,1);
+% plot(t,dsblc_mod_sig);
+% title('DSB-LC Modulate Signal');
+% subplot(2,1,2);
+% plot(f,X);
+% title('DSB-LC Modulate Signal FFT');
+% 
+% output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,1400,50,2000,filt_order);
 
 % Receive the signal and analyze it for errors
 
-info_sig = Despread(t,dsblc_mod_sig,prbn,encode,bitres);
+info_sig = Despread(t,blmod_sig,prbn,encode,bitres,true);
 
 % message = binaryVectorToASCII(info_sig);
 
 % Generate DSB-LC AM signal for comparision
 
 %run AWGN;
+
+
 

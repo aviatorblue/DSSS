@@ -56,88 +56,60 @@ tend = len/fs;
 tscale = tend*factor;
 t = linspace(0,len/fs,len);
 
+[EN f] = ComputeSpectrum(encode,fs,2^20);
+
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-stairs(t*factor,encode);
-xlim([0 tscale]);
-ylim([0 2]);
-xlabel('Time (\mus)');
-ylabel('Logical True/False');
-title('Encoded Information Signal');
-subplot(2,1,2);
 stairs(t*factor,encode);
 ylim([0 2]);
 xlim([tscale/2 2*tscale/3]);
 xlabel('Time (\mus)');
 ylabel('Logical True/False');
 title('Encoded Information Signal');
-saveas(gcf,'./encoded_signal','png');
-
-[EN f] = ComputeSpectrum(encode,fs,2^20);
-
-figure('Color',[1 1 1]);
+subplot(2,1,2);
 stairs(f/factor,EN);
 xlabel('Frequency (kHz)');
 ylabel('Amplitude');
 title('Encoded Information Signal Spectrum');
-saveas(gcf,'./encoded_signal_fft','png');
+saveas(gcf,'./images/encoded_signal','png');
 
 % Plot the psuedo set
 
+[EN f] = ComputeSpectrum(pseudo,fs,2^20);
+
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-plot(t*factor,prbn);
-xlim([0 tscale]);
-ylim([-2 2]);
-xlabel('Time (\mus)');
-ylabel('Logical True/False');
-title('Pseudorandom Binary Signal');
-subplot(2,1,2);
 stairs(t*factor,prbn);
 ylim([-2 2]);
 xlim([tscale/2 4*tscale/7]);
 xlabel('Time (\mus)');
 ylabel('Logical True/False');
 title('Pseudorandom Binary Signal');
-saveas(gcf,'./pseudo_signal','png');
-
-[EN f] = ComputeSpectrum(pseudo,fs,2^20);
-
-figure('Color',[1 1 1]);
+subplot(2,1,2);
 stairs(f/factor,EN);
 xlabel('Frequency (MHz)');
 ylabel('Amplitude');
 title('Pseudorandom Binary Signal Spectrum');
-saveas(gcf,'./pseudo_signal_fft','png');
+saveas(gcf,'./images/pseudo_signal','png');
 
 % Plotting the multiplied spectrum
 
 mod_sig = prbn.*encode;
+[EN f] = ComputeSpectrum(mod_sig,fs,2^20);
 
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-stairs(t*factor,mod_sig);
-ylim([-2 2]);
-xlim([0 tscale]);
-xlabel('Time (\mus)');
-ylabel('Logical True/False');
-title('Mixed Signal');
-subplot(2,1,2);
 stairs(t*factor,mod_sig);
 ylim([-2 2]);
 xlim([tscale/2 4*tscale/7]);
 xlabel('Time (\mus)');
 ylabel('Logical True/False');
 title('Mixed Signal');
-saveas(gcf,'./dsss','png');
-
-% Plotting the frequency spectrum of the signals
-
-[EN f] = ComputeSpectrum(mod_sig,fs,2^20);
-
-figure('Color',[1 1 1]);
+subplot(2,1,2);
 stairs(f/factor,EN);
 xlabel('Frequency (MHz)');
 ylabel('Amplitude');
 title('Mixed Signal Spectrum');
-saveas(gcf,'./dsss_fft','png');
+saveas(gcf,'./images/dsss','png');
+
+% Plotting the frequency spectrum of the signals
