@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2015 00:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2015 19:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -508,6 +508,28 @@ l.53 \end{appendices}
                      
 Things are pretty mixed up, but I think the worst is over.
 
+
+LaTeX Warning: Command \~ invalid in math mode on input line 55.
+
+./dsss_project.tex:55: Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.55 ...ignal was band limited a bit error of $\~1
+                                                  3\%$ was observed. However...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./dsss_project.tex:55: You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.55 ...ignal was band limited a bit error of $\~1
+                                                  3\%$ was observed. However...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+Missing character: There is no è in font cmex10!
  [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -517,39 +539,78 @@ File: ./images/dsss.png Graphic file (type png)
  <use ./images/dsss.png>
 Package pdftex.def Info: ./images/dsss.png used on input line 59.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
- <./images/dsb_lc.png, id=12, 562.1pt x 421.575pt>
-File: ./images/dsb_lc.png Graphic file (type png)
- <use ./images/dsb_lc.png>
-Package pdftex.def Info: ./images/dsb_lc.png used on input line 66.
-(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+ <./images/mod_sig.png, id=12, 578.16pt x 434.1018pt>
+File: ./images/mod_sig.png Graphic file (type png)
+ <use ./images/mod_sig.png>
+Package pdftex.def Info: ./images/mod_sig.png used on input line 66.
+(pdftex.def)             Requested size: 216.81pt x 162.78778pt.
+
+LaTeX Warning: Command \~ invalid in math mode on input line 71.
+
+./dsss_project.tex:71: Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.71 ...f the signal and it was found to have $\~1
+                                                  3.25\%$ bit error. This er...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./dsss_project.tex:71: You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.71 ...f the signal and it was found to have $\~1
+                                                  3.25\%$ bit error. This er...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+Missing character: There is no è in font cmex10!
  <./images/despread.png, id=13, 562.1pt x 421.575pt>
 File: ./images/despread.png Graphic file (type png)
  <use ./images/despread.png>
 Package pdftex.def Info: ./images/despread.png used on input line 75.
 (pdftex.def)             Requested size: 216.81pt x 162.60599pt.
- [2 <./images/dsss.png (PNG copy)> <./images/dsb_lc.png (PNG copy)> <./images/d
-espread.png (PNG copy)>] (./dsss_project.aux)
+
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+
+<./images/awgn_dsblc.png, id=14, 578.16pt x 434.1018pt>
+File: ./images/awgn_dsblc.png Graphic file (type png)
+ <use ./images/awgn_dsblc.png>
+Package pdftex.def Info: ./images/awgn_dsblc.png used on input line 85.
+(pdftex.def)             Requested size: 216.81pt x 162.78778pt.
+ <./images/awgn_dsss.png, id=15, 578.16pt x 434.1018pt>
+File: ./images/awgn_dsss.png Graphic file (type png)
+ <use ./images/awgn_dsss.png>
+Package pdftex.def Info: ./images/awgn_dsss.png used on input line 110.
+(pdftex.def)             Requested size: 216.81pt x 162.78778pt.
+ [2 <./images/dsss.png (PNG copy)> <./images/mod_sig.png (PNG copy)> <./images/
+despread.png (PNG copy)> <./images/awgn_dsblc.png (PNG copy)>] [3
+
+ <./images/awgn_dsss.png (PNG copy)>] (./dsss_project.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5785 strings out of 493117
- 85993 string characters out of 6135433
- 157611 words of memory out of 5000000
- 9180 multiletter control sequences out of 15000+600000
- 34823 words of font info for 66 fonts, out of 8000000 for 9000
+ 5802 strings out of 493117
+ 86311 string characters out of 6135433
+ 159635 words of memory out of 5000000
+ 9193 multiletter control sequences out of 15000+600000
+ 37654 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,42p,1246b,232s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,42p,1246b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb>
-Output written on dsss_project.pdf (2 pages, 103745 bytes).
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist
+/fonts/type1/urw/times/utmr8a.pfb>
+Output written on dsss_project.pdf (3 pages, 177613 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

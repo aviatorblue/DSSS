@@ -46,12 +46,12 @@ dsblc_mod_sig = (mod_sig + A).*carrier;
 [X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
 
 figure('Color',[1 1 1]);
-subplot(2,1,1);
-plot(t,dsblc_mod_sig);
-title('DSB-LC Modulate Signal');
-subplot(2,1,2);
 plot(f,X);
-title('DSB-LC Modulate Signal FFT');
+title('DSB-LC Modulate Signal Spectrum');
+xlabel('Frequency (Hz)');
+ylabel('|X(f)|');
+ylim([0 500]);
+saveas(gcf,'./images/mod_sig','png');
 
 output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,700,50,1000,filt_order);
 
@@ -63,7 +63,7 @@ info_sig = Despread(t,blmod_sig,prbn,encode,bitres,true);
 
 % Generate DSB-LC AM signal for comparision
 
-run AWGN;
+% run AWGN;
 
 
 

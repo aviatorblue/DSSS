@@ -63,22 +63,53 @@ These two signals are then modulated together to form a digital I/O signal carri
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3in]{dsb_lc.png}
+\includegraphics[width=3in]{mod_sig.png}
 \caption{DSB-LC Signal}
 \label{fig:dsb_lc}
 \end{figure}
 
-This signal is then despread to recreate the original signal. This despreading is done by multiplying the demodulating signal by the original PN (see Figure~\ref{fig:despread}). To verify the signals integrity a comparison was done to compare the bit error of the signal and it was found to have $\~13.25\%$ bit error. This error, as discussed above, is due to the band limiting of the signal for transmutation. HT
+This signal is then despread to recreate the original signal. This despreading is done by multiplying the demodulating signal by the original PN (see Figure~\ref{fig:despread}). To verify the signals integrity a comparison was done to compare the bit error of the signal and it was found to have $\~13.25\%$ bit error. This error, as discussed above, is due to the band limiting of the signal for transmission.
 
 \begin{figure}
 \centering
 \includegraphics[width=3in]{despread.png}
-\caption{DSB-LC Signal}
+\caption{Despread Signal Comparision}
 \label{fig:despread}
 \end{figure}
 
 \section{White Noise}
-When a signal accomponies additive white gaussian noise (AWGN) the signal to noise ratio decreases rapidly, however, for DSSS the result is quite the opposite. 
+When a signal accompanies additive white gaussian noise (AWGN) the signal to noise ratio decreases causing an increased error in the resulting signal. When AWGN is applied to a DSB-LC AM signal the resulting demodulated information has error increase of roughly (see Figure~\ref{fig:awgn_dsblc}). DSSS, however is much resilient to AWGN. Table~\ref{snr} compares the error of the DSSS and the DSB-LC AM.
 
+\begin{figure}
+\centering
+\includegraphics[width=3in]{awgn_dsblc.png}
+\caption{AWGN with DSB-LC AM Signal}
+\label{fig:awgn_dsblc}
+\end{figure}
+
+\begin{table}[!htpb]
+\begin{center}
+\begin{tabular}{c | c | c}
+  \textbf{SNR(dB)} & DSSS & DSB-LC\\  
+  0 & 19.3292 & ???\\
+  -0.3 & 27.9364 & ???\\
+  -0.477 & 34.5366 & ???\\
+  -0.6021 & 38.6449 & ???\\
+  -0.6990 & 41.2311 & ???\\
+  \\\\
+\end{tabular}
+\caption{AWGN Signal Effects}
+\label{snr}
+\end{center}
+\end{table}
+
+The resilience of the DSSS signal can be seen in more detail by examining its frequency spectrum for the decreasing SNR (see Figure~\ref{fig:awgn_dsss}). 
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{awgn_dsss.png}
+\caption{AWGN with DSSS Signal}
+\label{fig:awgn_dsss}
+\end{figure}
 
 \end{document}
