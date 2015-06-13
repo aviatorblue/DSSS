@@ -1,11 +1,5 @@
 close all;
 
-Wn = [50,700]*2/fs;
-filter = fir1(filt_order,Wn,'bandpass');
-signal = filtfilt(filter,1,encode);
-
-dsblc = (signal + A).*carrier;
-
 % Test the modulated signal with AGWN
 
 % Create AWGN Signal for both the DSSS and DSB-LC 
@@ -24,30 +18,32 @@ title('AWGN');
 
 figure('Color', [1 1 1]);
 for m = 1:5
-    AWGN_DSS(m,:) = (m)*white_noise + dsblc_mod_sig;
-    [MAGA f] = ComputeSpectrum(AWGN_DSS(m,:),fs,2^16);
+    AWGN_DSSS(m,:) = (m)*white_noise + dsblc_mod_sig;
+    [MAGA f] = ComputeSpectrum(AWGN_DSSS(m,:),fs,2^16);
     subplot(5,1,m);
     plot(f,MAGA);
     xlabel('Frequency (Hz)');
     ylabel('|X(f)|');
-    title('AWGN-DSS FFT');
+    title('AWGN-DSSS FFT');
+    ylim([0 500]);
 end
+saveas(gcf,'./images/awgn_dsss','png');
 
 figure('Color', [1 1 1]);
 for m = 1:5
-    AWGN_DSBLC(m,:) = (m)*white_noise + dsblc_mod_sig;
+    AWGN_DSBLC(m,:) = (m)*white_noise + dsblc;
     [MAGA f] = ComputeSpectrum(AWGN_DSBLC(m,:),fs,2^16);
     subplot(5,1,m);
     plot(f,MAGA);
     xlabel('Frequency (Hz)');
     ylabel('|X(f)|');
     title('AWGN-DSB-LC FFT');
+    ylim([0 500]);
 end
-
+saveas(gcf,'./images/awgn_dsblc','png');
 
 for m = 1:5
-    
-    display(sprintf(['AWGN_DSS with Noise at ', num2str(m)]));
+    display(sprintf(['AWGN_DSSS with Noise at ', num2str(m)]));
     output = SYNCH_DEMOD(t,AWGN_DSS(m,:),blmod_sig,carrier,fs,700,50,1000,filt_order);
     info_sig = Despread(t,output,prbn,encode,bitres,true);
     

@@ -2,8 +2,14 @@
 %
 % This script aims at generating an information signal from intelligent
 % data and transfer the data using DSSS and recreating the data and
-% comparing the original signal to the final signal. Note all frequencies
-% are in MHz
+% comparing the original signal to the final signal.
+% Developers Note: 
+% 
+% There was not enough time to create a DSB-LC AM signal that was optimized
+% for digital I/O transmission with minimal data loss. It is not in any
+% calculations or figures.
+
+
 
 clear all; close all; clc;
 format short
@@ -43,6 +49,10 @@ carrier = carrier(1:length(encode));
 A = abs(max(encode));
 dsblc_mod_sig = (mod_sig + A).*carrier;
 
+% Create Comparision DSB-LC AM signal
+
+dsblc = (encode + A).*carrier;
+
 [X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
 
 figure('Color',[1 1 1]);
@@ -57,13 +67,16 @@ output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,700,50,1000,filt_order
 
 % Receive the signal and analyze it for errors
 
-info_sig = Despread(t,blmod_sig,prbn,encode,bitres,true);
+info_sig = Despread(t,output,prbn,encode,bitres,true);
 
 % message = binaryVectorToASCII(info_sig);
 
 % Generate DSB-LC AM signal for comparision
 
 % run AWGN;
+
+run Jamming
+
 
 
 
