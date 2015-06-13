@@ -18,7 +18,7 @@ for x = 1:length(output)
         orig = 0;
         for h = 1:bitres
         vote = vote + reconsig(x+1-bitres);
-        orig = vote + encode(x+1-bitres);
+        orig = orig + encode(x+1-bitres);
         end
         vote = vote/bitres;
         orig = orig/bitres;

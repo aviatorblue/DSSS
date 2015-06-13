@@ -2,7 +2,7 @@
 
 string = 'Four score and seven years ago our fathers brought forth on ';
 string = [string,'this continent, a new nation, conceived in Liberty, and '];
-string = [string,'dedicated to the proposition that all men are created equal.'];
+%string = [string,'dedicated to the proposition that all men are created equal.'];
 
 
 % Convert ASCII characters to Binary Strings
@@ -14,7 +14,7 @@ end
 
 %data = ['0','0','0','1','0','1','0','0','0','1','0','1','0','0','0','1','0','1'];
 % Encode the signal for voting
-bitres = 11;
+bitres = 8;
 encode = [];
 for n = 1:length(data)
     if data(n) == '0'
@@ -28,46 +28,43 @@ len = length(encode);
 
 % Creating a pseudoradom binary sequence
 
-reps = len;
+reps = 4;
 div = len/reps;
 
-pseudo = rand(1,len);
-
-for x = 1:len/div
+pseudo = rand(1,div);
+prbn = [];
+for x = 1:div
     if pseudo(x) >= 0.5 && pseudo(x) <= 1.0
-        pseudo(x) = -1;
+        prbn = [prbn,-1*ones(1,reps)];
     elseif pseudo(x) >= 0  && pseudo(x) < 0.5
         pseudo(x) = 1;
+        prbn = [prbn,ones(1,reps)];
     end
 end
 
-prbn = [];
-for x = 1:div
-   prbn = [prbn,pseudo];
-end
 
 % Plot the information signal
 
 % Time plotting
 
-fs = 8000; % ~2 GHz
+fs = 4000; % ~2 GHz
 factor = 1;
 tend = len/fs;
-tscale = tend*factor;
+tscale = tend;
 t = linspace(0,len/fs,len);
 
 [EN f] = ComputeSpectrum(encode,fs,2^20);
 
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-stairs(t*factor,encode);
+stairs(t,encode);
 ylim([0 2]);
 xlim([tscale/2 2*tscale/3]);
 xlabel('Time (\mus)');
 ylabel('Logical True/False');
 title('Encoded Information Signal');
 subplot(2,1,2);
-stairs(f/factor,EN);
+stairs(f,EN);
 xlabel('Frequency (kHz)');
 ylabel('Amplitude');
 title('Encoded Information Signal Spectrum');
@@ -79,15 +76,15 @@ saveas(gcf,'./images/encoded_signal','png');
 
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-stairs(t*factor,prbn);
+stairs(t,prbn);
 ylim([-2 2]);
 xlim([tscale/2 4*tscale/7]);
-xlabel('Time (\mus)');
+xlabel('Time (s)');
 ylabel('Logical True/False');
 title('Pseudorandom Binary Signal');
 subplot(2,1,2);
-stairs(f/factor,EN);
-xlabel('Frequency (MHz)');
+stairs(f,EN);
+xlabel('Frequency (Hz)');
 ylabel('Amplitude');
 title('Pseudorandom Binary Signal Spectrum');
 saveas(gcf,'./images/pseudo_signal','png');
@@ -99,15 +96,15 @@ mod_sig = prbn.*encode;
 
 figure('Color',[1 1 1]);
 subplot(2,1,1);
-stairs(t*factor,mod_sig);
+stairs(t,mod_sig);
 ylim([-2 2]);
 xlim([tscale/2 4*tscale/7]);
 xlabel('Time (\mus)');
 ylabel('Logical True/False');
 title('Mixed Signal');
 subplot(2,1,2);
-stairs(f/factor,EN);
-xlabel('Frequency (MHz)');
+stairs(f,EN);
+xlabel('Frequency (Hz)');
 ylabel('Amplitude');
 title('Mixed Signal Spectrum');
 saveas(gcf,'./images/dsss','png');

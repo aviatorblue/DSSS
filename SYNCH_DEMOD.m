@@ -50,18 +50,18 @@ filter = fir1(filt_order,fn*2/fs,'high');
 output = filtfilt(filter,1,new_sig);
 atten = max(output);
 orig = max(sampled_signal);
-comp = atten*sampled_signal/orig;
+output = (orig/atten)*output;
 plotgraph(t,output,'ro','Time (sec)','Amplitude',...
           'Comparison of Two Signals');
 hold on;
-plot(t,comp);
+plot(t,sampled_signal);
 legend('Demod','Original');
 
 % FFT Comparison SD: This section takes and compares the filtered signal with the original in
 % the frequency domain.
 
 [H f] = ComputeSpectrum(output,fs,2^16);
-[X f] = ComputeSpectrum(comp,fs,2^16);
+[X f] = ComputeSpectrum(sampled_signal,fs,2^16);
 
 plotgraph(f,H,'ro','Frequency (Hz)','Amplitude',...
           'Comparison of Two Signals in the Frequency Domain');

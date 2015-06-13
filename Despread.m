@@ -34,8 +34,8 @@ ylim([0 2]);
 % Compare the two signal to produce a standard error
 
 error = 0;
-for d = 1:length(info_sig)
-    if info_sig(d) ~= origin(d)
+for d = 1:length(reconsig)
+    if reconsig(d) ~= encode(d)
         error = error + 1;
     end
 end
