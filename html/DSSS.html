@@ -1,0 +1,229 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>EE 401: DSSS Final Project</title><meta name="generator" content="MATLAB 7.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-06-12"><meta name="DC.source" content="DSSS.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h1>EE 401: DSSS Final Project</h1><p>This script aims at generating an information signal from intelligent data and transfer the data using DSSS and recreating the data and comparing the original signal to the final signal. Developers Note:</p><p>There was not enough time to create a DSB-LC AM signal that was optimized for digital I/O transmission with minimal data loss. It is not in any calculations or figures.</p><pre class="codeinput">clear <span class="string">all</span>; close <span class="string">all</span>; clc;
+format <span class="string">short</span>
+
+<span class="comment">% Create DSSS signal</span>
+run <span class="string">DSSS_signal_generation</span>;
+
+filt_order = round(length(mod_sig)/3-1);
+
+<span class="comment">% Bandlimit the signal</span>
+
+Wn = [50,700]*2/fs;
+filter = fir1(filt_order,Wn,<span class="string">'bandpass'</span>);
+figure(<span class="string">'Color'</span>,[1 1 1]);
+freqz(filter);
+xlim([0 fs/2]);
+blmod_sig = filtfilt(filter,1,mod_sig);
+
+[X f] = ComputeSpectrum(blmod_sig,fs,2^16);
+
+figure(<span class="string">'Color'</span>,[1 1 1]);
+subplot(2,1,1);
+plot(t,blmod_sig,<span class="string">'r'</span>);
+title(<span class="string">'Bandlimited Signal'</span>);
+ylim([0 2]);
+subplot(2,1,2);
+plot(f,X,<span class="string">'b'</span>);
+title(<span class="string">'Bandlimited Signal'</span>);
+
+<span class="comment">% Modulate the signal</span>
+fc = 1000; <span class="comment">% 1 MHz</span>
+[tc Tp] = create_signal(fc,fs,len);
+A = abs(max(encode));
+carrier = cos(2*pi*tc/Tp);
+carrier = carrier(1:length(encode));
+
+A = abs(max(encode));
+dsblc_mod_sig = (mod_sig + A).*carrier;
+
+<span class="comment">% Create Comparision DSB-LC AM signal</span>
+
+dsblc = (encode + A).*carrier;
+
+[X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
+
+figure(<span class="string">'Color'</span>,[1 1 1]);
+plot(f,X);
+title(<span class="string">'DSB-LC Modulate Signal Spectrum'</span>);
+xlabel(<span class="string">'Frequency (Hz)'</span>);
+ylabel(<span class="string">'|X(f)|'</span>);
+ylim([0 500]);
+saveas(gcf,<span class="string">'./images/mod_sig'</span>,<span class="string">'png'</span>);
+
+output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,700,50,1000,filt_order);
+
+<span class="comment">% Receive the signal and analyze it for errors</span>
+
+info_sig = Despread(t,output,prbn,encode,bitres,true);
+
+<span class="comment">% message = binaryVectorToASCII(info_sig);</span>
+
+<span class="comment">% Generate DSB-LC AM signal for comparision</span>
+
+run <span class="string">AWGN</span>;
+
+run <span class="string">Jamming</span>
+</pre><pre class="codeoutput">The standard error was 1110 bits or 14.9515 percent
+AWGN_DSSS with Noise at 1
+The standard error was 1522 bits or 20.5011 percent
+AWGN_DSSS with Noise at 2
+The standard error was 2099 bits or 28.2732 percent
+AWGN_DSSS with Noise at 3
+The standard error was 2556 bits or 34.4289 percent
+AWGN_DSSS with Noise at 4
+The standard error was 2856 bits or 38.4698 percent
+AWGN_DSSS with Noise at 5
+The standard error was 3027 bits or 40.7732 percent
+The standard error was 1381 bits or 18.6018 percent
+</pre><img vspace="5" hspace="5" src="DSSS_01.png" alt=""> <img vspace="5" hspace="5" src="DSSS_02.png" alt=""> <img vspace="5" hspace="5" src="DSSS_03.png" alt=""> <img vspace="5" hspace="5" src="DSSS_04.png" alt=""> <img vspace="5" hspace="5" src="DSSS_05.png" alt=""> <img vspace="5" hspace="5" src="DSSS_06.png" alt=""> <img vspace="5" hspace="5" src="DSSS_07.png" alt=""> <img vspace="5" hspace="5" src="DSSS_08.png" alt=""> <img vspace="5" hspace="5" src="DSSS_09.png" alt=""> <img vspace="5" hspace="5" src="DSSS_10.png" alt=""> <img vspace="5" hspace="5" src="DSSS_11.png" alt=""> <img vspace="5" hspace="5" src="DSSS_12.png" alt=""> <img vspace="5" hspace="5" src="DSSS_13.png" alt=""> <img vspace="5" hspace="5" src="DSSS_14.png" alt=""> <img vspace="5" hspace="5" src="DSSS_15.png" alt=""> <img vspace="5" hspace="5" src="DSSS_16.png" alt=""> <img vspace="5" hspace="5" src="DSSS_17.png" alt=""> <img vspace="5" hspace="5" src="DSSS_18.png" alt=""> <img vspace="5" hspace="5" src="DSSS_19.png" alt=""> <img vspace="5" hspace="5" src="DSSS_20.png" alt=""> <img vspace="5" hspace="5" src="DSSS_21.png" alt=""> <img vspace="5" hspace="5" src="DSSS_22.png" alt=""> <img vspace="5" hspace="5" src="DSSS_23.png" alt=""> <img vspace="5" hspace="5" src="DSSS_24.png" alt=""> <img vspace="5" hspace="5" src="DSSS_25.png" alt=""> <img vspace="5" hspace="5" src="DSSS_26.png" alt=""> <img vspace="5" hspace="5" src="DSSS_27.png" alt=""> <img vspace="5" hspace="5" src="DSSS_28.png" alt=""> <img vspace="5" hspace="5" src="DSSS_29.png" alt=""> <img vspace="5" hspace="5" src="DSSS_30.png" alt=""> <img vspace="5" hspace="5" src="DSSS_31.png" alt=""> <img vspace="5" hspace="5" src="DSSS_32.png" alt=""> <img vspace="5" hspace="5" src="DSSS_33.png" alt=""> <img vspace="5" hspace="5" src="DSSS_34.png" alt=""> <img vspace="5" hspace="5" src="DSSS_35.png" alt=""> <img vspace="5" hspace="5" src="DSSS_36.png" alt=""> <img vspace="5" hspace="5" src="DSSS_37.png" alt=""> <img vspace="5" hspace="5" src="DSSS_38.png" alt=""> <img vspace="5" hspace="5" src="DSSS_39.png" alt=""> <img vspace="5" hspace="5" src="DSSS_40.png" alt=""> <img vspace="5" hspace="5" src="DSSS_41.png" alt=""> <img vspace="5" hspace="5" src="DSSS_42.png" alt=""> <img vspace="5" hspace="5" src="DSSS_43.png" alt=""> <img vspace="5" hspace="5" src="DSSS_44.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.13<br></p></div><!--
+##### SOURCE BEGIN #####
+%% EE 401: DSSS Final Project
+%
+% This script aims at generating an information signal from intelligent
+% data and transfer the data using DSSS and recreating the data and
+% comparing the original signal to the final signal.
+% Developers Note: 
+% 
+% There was not enough time to create a DSB-LC AM signal that was optimized
+% for digital I/O transmission with minimal data loss. It is not in any
+% calculations or figures.
+
+
+
+clear all; close all; clc;
+format short
+
+% Create DSSS signal
+run DSSS_signal_generation;
+
+filt_order = round(length(mod_sig)/3-1);
+
+% Bandlimit the signal
+
+Wn = [50,700]*2/fs;
+filter = fir1(filt_order,Wn,'bandpass');
+figure('Color',[1 1 1]);
+freqz(filter);
+xlim([0 fs/2]);
+blmod_sig = filtfilt(filter,1,mod_sig);
+
+[X f] = ComputeSpectrum(blmod_sig,fs,2^16);
+
+figure('Color',[1 1 1]);
+subplot(2,1,1);
+plot(t,blmod_sig,'r');
+title('Bandlimited Signal');
+ylim([0 2]);
+subplot(2,1,2);
+plot(f,X,'b');
+title('Bandlimited Signal');
+ 
+% Modulate the signal
+fc = 1000; % 1 MHz
+[tc Tp] = create_signal(fc,fs,len);
+A = abs(max(encode));
+carrier = cos(2*pi*tc/Tp);
+carrier = carrier(1:length(encode));
+
+A = abs(max(encode));
+dsblc_mod_sig = (mod_sig + A).*carrier;
+
+% Create Comparision DSB-LC AM signal
+
+dsblc = (encode + A).*carrier;
+
+[X f] = ComputeSpectrum(dsblc_mod_sig,fs,2^16);
+
+figure('Color',[1 1 1]);
+plot(f,X);
+title('DSB-LC Modulate Signal Spectrum');
+xlabel('Frequency (Hz)');
+ylabel('|X(f)|');
+ylim([0 500]);
+saveas(gcf,'./images/mod_sig','png');
+
+output = SYNCH_DEMOD(t,dsblc_mod_sig,blmod_sig,carrier,fs,700,50,1000,filt_order);
+
+% Receive the signal and analyze it for errors
+
+info_sig = Despread(t,output,prbn,encode,bitres,true);
+
+% message = binaryVectorToASCII(info_sig);
+
+% Generate DSB-LC AM signal for comparision
+
+run AWGN;
+
+run Jamming
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

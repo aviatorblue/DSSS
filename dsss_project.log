@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2015 20:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2015 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -469,10 +469,7 @@ l.24 \maketitle
 ? q
 OK, entering \batchmode...
 
-LaTeX Warning: Reference `fig:id' on page 1 undefined on input line 37.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
@@ -480,7 +477,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--38
 <./images/encoded_signal.png, id=1, 578.16pt x 434.1018pt>
 File: ./images/encoded_signal.png Graphic file (type png)
  <use ./images/encoded_signal.png>
-Package pdftex.def Info: ./images/encoded_signal.png used on input line 41.
+Package pdftex.def Info: ./images/encoded_signal.png used on input line 38.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -488,47 +485,47 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
  <pseudo_signal.png, id=2, 578.16pt x 434.1018pt>
 File: pseudo_signal.png Graphic file (type png)
  <use pseudo_signal.png>
-Package pdftex.def Info: pseudo_signal.png used on input line 48.
+Package pdftex.def Info: pseudo_signal.png used on input line 45.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-./dsss_project.tex:52: LaTeX Error: \begin{document} ended by \end{appendices}.
+./dsss_project.tex:49: LaTeX Error: \begin{document} ended by \end{appendices}.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.52 \end{appendices}
+l.49 \end{appendices}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-./dsss_project.tex:52: Extra \endgroup.
+./dsss_project.tex:49: Extra \endgroup.
 <recently read> \endgroup 
                           
-l.52 \end{appendices}
+l.49 \end{appendices}
                      
 Things are pretty mixed up, but I think the worst is over.
 
 
-LaTeX Warning: Command \~ invalid in math mode on input line 54.
+LaTeX Warning: Command \~ invalid in math mode on input line 51.
 
-./dsss_project.tex:54: Please use \mathaccent for accents in math mode.
+./dsss_project.tex:51: Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.54 ...ignal was band limited a bit error of $\~1
+l.51 ...ignal was band limited a bit error of $\~1
                                                   3\%$ was observed. However...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
-./dsss_project.tex:54: You can't use `\spacefactor' in math mode.
+./dsss_project.tex:51: You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.54 ...ignal was band limited a bit error of $\~1
+l.51 ...ignal was band limited a bit error of $\~1
                                                   3\%$ was observed. However...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -539,7 +536,7 @@ Missing character: There is no è in font cmex10!
  <./images/dsss.png, id=3, 578.16pt x 434.1018pt>
 File: ./images/dsss.png Graphic file (type png)
  <use ./images/dsss.png>
-Package pdftex.def Info: ./images/dsss.png used on input line 58.
+Package pdftex.def Info: ./images/dsss.png used on input line 55.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -547,26 +544,26 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
  <./images/mod_sig.png, id=4, 578.16pt x 434.1018pt>
 File: ./images/mod_sig.png Graphic file (type png)
  <use ./images/mod_sig.png>
-Package pdftex.def Info: ./images/mod_sig.png used on input line 65.
+Package pdftex.def Info: ./images/mod_sig.png used on input line 62.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-LaTeX Warning: Command \~ invalid in math mode on input line 70.
+LaTeX Warning: Command \~ invalid in math mode on input line 67.
 
-./dsss_project.tex:70: Please use \mathaccent for accents in math mode.
+./dsss_project.tex:67: Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.70 ...f the signal and it was found to have $\~1
+l.67 ...f the signal and it was found to have $\~1
                                                   6\%$ bit error. This error...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
-./dsss_project.tex:70: You can't use `\spacefactor' in math mode.
+./dsss_project.tex:67: You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.70 ...f the signal and it was found to have $\~1
+l.67 ...f the signal and it was found to have $\~1
                                                   6\%$ bit error. This error...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -577,35 +574,32 @@ Missing character: There is no è in font cmex10!
  <./images/despread.png, id=5, 562.1pt x 421.575pt>
 File: ./images/despread.png Graphic file (type png)
  <use ./images/despread.png>
-Package pdftex.def Info: ./images/despread.png used on input line 74.
+Package pdftex.def Info: ./images/despread.png used on input line 71.
 (pdftex.def)             Requested size: 216.81pt x 162.60599pt.
-
-Underfull \vbox (badness 2221) has occurred while \output is active []
-
+ <./images/awgn_dsss.png, id=6, 578.16pt x 434.1018pt>
+File: ./images/awgn_dsss.png Graphic file (type png)
+ <use ./images/awgn_dsss.png>
+Package pdftex.def Info: ./images/awgn_dsss.png used on input line 81.
+(pdftex.def)             Requested size: 216.81pt x 162.78778pt.
  [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
- <./images/encoded_signal.png (PNG copy)> <./pseudo_signal.png (PNG copy)>] <./
-images/awgn_dsss.png, id=15, 578.16pt x 434.1018pt>
-File: ./images/awgn_dsss.png Graphic file (type png)
- <use ./images/awgn_dsss.png>
-Package pdftex.def Info: ./images/awgn_dsss.png used on input line 84.
-(pdftex.def)             Requested size: 216.81pt x 162.78778pt.
+ <./images/encoded_signal.png (PNG copy)> <./pseudo_signal.png (PNG copy)>]
 
-LaTeX Warning: Command \~ invalid in math mode on input line 89.
+LaTeX Warning: Command \~ invalid in math mode on input line 86.
 
-./dsss_project.tex:89: Please use \mathaccent for accents in math mode.
+./dsss_project.tex:86: Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.89 ...B a change in error is observed to be $\~3
+l.86 ...B a change in error is observed to be $\~3
                                                   \%$. This is excellent con...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
-./dsss_project.tex:89: You can't use `\spacefactor' in math mode.
+./dsss_project.tex:86: You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.89 ...B a change in error is observed to be $\~3
+l.86 ...B a change in error is observed to be $\~3
                                                   \%$. This is excellent con...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -616,37 +610,31 @@ Missing character: There is no è in font cmex10!
  <./images/jamming.png, id=16, 578.16pt x 434.1018pt>
 File: ./images/jamming.png Graphic file (type png)
  <use ./images/jamming.png>
-Package pdftex.def Info: ./images/jamming.png used on input line 96.
+Package pdftex.def Info: ./images/jamming.png used on input line 93.
 (pdftex.def)             Requested size: 216.81pt x 162.78778pt.
  [2 <./images/dsss.png (PNG copy)> <./images/mod_sig.png (PNG copy)> <./images/
 despread.png (PNG copy)> <./images/awgn_dsss.png (PNG copy)> <./images/jamming.
 png (PNG copy)>] [3
 
-] (./dsss_project.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./dsss_project.aux) ) 
 Here is how much of TeX's memory you used:
  5797 strings out of 493117
- 86256 string characters out of 6135433
- 159619 words of memory out of 5000000
+ 86255 string characters out of 6135433
+ 158630 words of memory out of 5000000
  9190 multiletter control sequences out of 15000+600000
- 34823 words of font info for 66 fonts, out of 8000000 for 9000
+ 34852 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,42p,846b,232s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb>
-Output written on dsss_project.pdf (3 pages, 155492 bytes).
+ 38i,6n,42p,841b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/bas
+e/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/
+texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/20
+14/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on dsss_project.pdf (3 pages, 156848 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

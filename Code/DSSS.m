@@ -73,7 +73,7 @@ info_sig = Despread(t,output,prbn,encode,bitres,true);
 
 % Generate DSB-LC AM signal for comparision
 
-% run AWGN;
+run AWGN;
 
 run Jamming
 
